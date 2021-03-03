@@ -29,3 +29,10 @@ module "routes" {
   internet_gw    = module.gateways.internet_gw
 }
 
+module "alb" {
+  source         = "./application-loadbalancer"
+  environment    = var.environment
+  project_name   = var.project_name
+  vpc            = module.vpc.vpc
+  public_subnets = module.subnet.public_subnets
+}

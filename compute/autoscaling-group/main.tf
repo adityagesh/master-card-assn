@@ -3,7 +3,7 @@ resource "aws_autoscaling_group" "ec2-webserver" {
   desired_capacity    = var.asg_config.desired_capacity
   max_size            = var.asg_config.max_size
   min_size            = var.asg_config.min_size
-
+  target_group_arns   = [var.alb_target_group.arn]
   launch_template {
     id = aws_launch_template.ec2-template.id
     # version = "$Latest"

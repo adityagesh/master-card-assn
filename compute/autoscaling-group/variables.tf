@@ -9,6 +9,8 @@ variable "project_name" {
 variable "private_subnets" {}
 
 variable "vpc" {}
+variable "alb_target_group" {}
+variable "alb_security_group" {}
 
 variable "CIDR_block_all_traffic" {
   type    = list
@@ -16,7 +18,7 @@ variable "CIDR_block_all_traffic" {
 }
 variable "image_id" {
   type    = string
-  default = ""
+#   default = ""
 }
 
 variable "instance_type" {

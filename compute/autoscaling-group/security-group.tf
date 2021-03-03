@@ -9,18 +9,20 @@ resource "aws_security_group" "ec2_webserver" {
 
   # http incoming traffic
   ingress {
-    cidr_blocks = var.CIDR_block_all_traffic
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
+    cidr_blocks     = var.CIDR_block_all_traffic
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [var.alb_security_group.name]
   }
 
   #https incoming traffic
   ingress {
-    cidr_blocks = var.CIDR_block_all_traffic
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
+    cidr_blocks     = var.CIDR_block_all_traffic
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    security_groups = [var.alb_security_group.name]
   }
   # allow all outgoing traffic
   egress {

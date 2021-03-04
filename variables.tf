@@ -14,7 +14,7 @@ variable "region" {
 }
 
 variable "ami_ids" {
-  type = map(string)
+  type        = map(string)
   description = "AWS AMI id based on region"
 }
 

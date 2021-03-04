@@ -9,7 +9,6 @@ resource "aws_security_group" "ec2_webserver" {
 
   # http incoming traffic
   ingress {
-    # cidr_blocks     = var.CIDR_block_all_traffic
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
@@ -18,7 +17,6 @@ resource "aws_security_group" "ec2_webserver" {
 
   #https incoming traffic
   ingress {
-    # cidr_blocks     = var.CIDR_block_all_traffic
     from_port       = 443
     to_port         = 443
     protocol        = "tcp"

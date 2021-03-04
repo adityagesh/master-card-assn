@@ -35,6 +35,9 @@ variable "asg_config" {
   }
 }
 
+variable "metric_namespace" {
+  default = "WebserverEC2"
+}
 
 locals {
   user_data = <<USERDATA
@@ -43,5 +46,8 @@ cd /tmp
 wget https://raw.githubusercontent.com/adityagesh/master-card-assn/main/scripts/startup.sh
 chmod +x startup.sh
 ./startup.sh
+wget https://raw.githubusercontent.com/adityagesh/master-card-assn/main/scripts/cloudwatch.sh
+chmod +x cloudwatch.sh
+./cloudwatch.sh
 USERDATA
 }

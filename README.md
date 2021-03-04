@@ -14,9 +14,11 @@
 - NAT Gateway attached to default route table
 - Application Loadbalancer is used to loadbalance http traffic across ec2 instances
 - EC2 image used: Ubuntu 20 LTS
+- Two EBS volumes attached to EC2 - one for `/` and one for `/var/logs`
 - Apache webserver is accessible via http
-- EBS volume encrypted using default ebs encryption key
-- Apache2 log rotation handles increasing log size
+- Both EBS volume encrypted using aws/ebs encryption key
+- Log rotation handles increasing log size
+- Autoscaling based on CPU and Memory percentage usage using CloudWatch
 
 
 # Instructions to deploy

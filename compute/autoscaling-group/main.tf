@@ -53,6 +53,9 @@ resource "aws_launch_template" "ec2-template" {
       kms_key_id            = data.aws_kms_key.ebs_default.arn
     }
   }
+  iam_instance_profile {
+    arn = aws_iam_instance_profile.ec2.arn
+  }
 
   tags = {
     Environment = var.environment

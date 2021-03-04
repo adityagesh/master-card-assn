@@ -9,4 +9,5 @@ module "autoscaling-group" {
   alb_security_group = var.alb_security_group
   region             = var.region
   ami_ids            = var.ami_ids
+  instance_type      = var.instance_type
 }

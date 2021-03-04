@@ -18,3 +18,15 @@ o   Must contain both a root volume to store the application / services
 o   Must contain a secondary volume meant to store any log data bound from / var/log
 
 o   Must include a web server of your choice.
+
+## Additional Areas to Focus On:
+
+·       You must ensure that all data is encrypted at rest
+
+·       Ideally, you should design these web servers so they can be managed without logging in with the root key
+
+·       We should have some sort of alarm mechanism that indicates when the application is experiencing any issues.
+
+·       Configure the autoscaling group to automatically add and remove nodes based on load
+
+·       You should assume that this web server may receive high volumes of web traffic, thus you should appropriately manage the storage / growth of logs

@@ -1,5 +1,5 @@
 resource "aws_security_group" "ec2_webserver" {
-  name        = "${var.project_name}-ec2-webserver"
+  name        = "${var.project_name}-ec2-webserver-${var.environment}"
   description = "Security group for all ec2 instances"
   vpc_id      = var.vpc.id
 

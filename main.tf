@@ -16,4 +16,5 @@ module "compute" {
   alb_security_group = module.networking.alb_security_group
   region             = var.region
   ami_ids            = var.ami_ids
+  instance_type      = var.instance_type
 }

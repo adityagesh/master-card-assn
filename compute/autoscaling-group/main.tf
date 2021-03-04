@@ -11,7 +11,7 @@ resource "aws_autoscaling_group" "ec2-webserver" {
 
   tag {
     key                 = "name"
-    value               = "${var.project_name}-asg"
+    value               = "${var.project_name}-asg-${var.environment}"
     propagate_at_launch = true
   }
   tag {
@@ -23,7 +23,7 @@ resource "aws_autoscaling_group" "ec2-webserver" {
 
 
 resource "aws_launch_template" "ec2-template" {
-  name_prefix            = var.project_name
+  name_prefix            = "${var.project_name}-${var.environment}"
   image_id               = var.ami_ids["${var.region}"]
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.ec2_webserver.id]
@@ -38,8 +38,8 @@ resource "aws_launch_template" "ec2-template" {
       volume_type           = "gp2"
       volume_size           = 10
       delete_on_termination = true
-      encrypted  = true
-      kms_key_id = data.aws_kms_key.ebs_default.arn
+      encrypted             = true
+      kms_key_id            = data.aws_kms_key.ebs_default.arn
     }
   }
 

@@ -1,5 +1,5 @@
 resource "aws_lb" "webserver" {
-  name               = "${var.project_name}-alb"
+  name               = "${var.project_name}-alb-${var.environment}"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb.id]
@@ -18,7 +18,7 @@ resource "aws_lb" "webserver" {
 
 
 resource "aws_lb_target_group" "webserver" {
-  name     = "${var.project_name}-tg"
+  name     = "${var.project_name}-tg-${var.environment}"
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc.id

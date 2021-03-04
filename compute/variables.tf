@@ -13,3 +13,4 @@ variable "vpc" {}
 variable "alb_target_group" {}
 variable "alb_security_group"{}
 variable "region" {}
+variable "instance_type" {}

@@ -2,7 +2,7 @@
 resource "aws_route_table" "default" {
   vpc_id = var.vpc.id
   tags = {
-    Name        = "default"
+    Name        = "default-${var.environment}"
     Environment = var.environment
   }
 }
@@ -10,7 +10,7 @@ resource "aws_route_table" "default" {
 resource "aws_route_table" "public_subnet" {
   vpc_id = var.vpc.id
   tags = {
-    Name        = "public-subnet"
+    Name        = "public-subnet-${var.environment}"
     Environment = var.environment
   }
 }

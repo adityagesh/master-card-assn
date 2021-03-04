@@ -1,5 +1,5 @@
 resource "aws_security_group" "alb" {
-  name        = "${var.project_name}-alb-webserver"
+  name        = "${var.project_name}-alb-webserver-${var.environment}"
   description = "Security group for alb"
   vpc_id      = var.vpc.id
 

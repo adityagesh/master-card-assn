@@ -1,6 +1,8 @@
 #!/bin/bash
-apt-get update
-apt-get upgrade
-apt install apache2
-ufw app list
-systemctl status apache2
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt install -y apache2
+sudo ufw app list
+sudo ufw allow 'Apache'
+sudo ufw status
+sudo systemctl status apache2

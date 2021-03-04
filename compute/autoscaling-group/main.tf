@@ -5,8 +5,8 @@ resource "aws_autoscaling_group" "ec2-webserver" {
   min_size            = var.asg_config.min_size
   target_group_arns   = [var.alb_target_group.arn]
   launch_template {
-    id = aws_launch_template.ec2-template.id
-    # version = "$Latest"
+    id      = aws_launch_template.ec2-template.id
+    version = "$Latest"
   }
 
   tag {
@@ -24,23 +24,33 @@ resource "aws_autoscaling_group" "ec2-webserver" {
 
 resource "aws_launch_template" "ec2-template" {
   name_prefix            = var.project_name
-  image_id               = var.image_id
+  image_id               = var.ami_ids["${var.region}"]
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.ec2_webserver.id]
-  network_interfaces {
-    associate_public_ip_address = false
-  }
 
+  user_data = base64encode(local.user_data)
+
+  instance_initiated_shutdown_behavior = "terminate"
   block_device_mappings {
     device_name = "/dev/sda1"
-    # virtual_name = "ephemeral0"
+
     ebs {
       volume_type           = "gp2"
       volume_size           = 10
       delete_on_termination = true
+      encrypted  = true
+      kms_key_id = data.aws_kms_key.ebs_default.arn
+    }
+  }
 
-      #   encrypted = true
-      #   kms_key_id = 
+  block_device_mappings {
+    device_name = "/dev/sdf"
+    ebs {
+      volume_type           = "gp2"
+      volume_size           = 10
+      delete_on_termination = true
+      encrypted             = true
+      kms_key_id            = data.aws_kms_key.ebs_default.arn
     }
   }
 
@@ -48,3 +58,4 @@ resource "aws_launch_template" "ec2-template" {
     Environment = var.environment
   }
 }
+

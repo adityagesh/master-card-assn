@@ -7,7 +7,9 @@ variable "project_name" {
 }
 
 variable "private_subnets" {}
-
+variable "public_subnets" {}
+variable "region" {}
+variable "ami_ids" {}
 variable "vpc" {}
 variable "alb_target_group" {}
 variable "alb_security_group" {}
@@ -15,10 +17,6 @@ variable "alb_security_group" {}
 variable "CIDR_block_all_traffic" {
   type    = list
   default = ["0.0.0.0/0"]
-}
-variable "image_id" {
-  type    = string
-#   default = ""
 }
 
 variable "instance_type" {
@@ -38,4 +36,15 @@ variable "asg_config" {
     max_size         = 3
     min_size         = 1
   }
+}
+
+
+locals {
+  user_data = <<USERDATA
+#!/bin/bash -xe
+cd /tmp
+wget https://raw.githubusercontent.com/adityagesh/master-card-assn/main/scripts/startup.sh
+chmod +x startup.sh
+./startup.sh
+USERDATA
 }

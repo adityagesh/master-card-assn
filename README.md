@@ -5,6 +5,7 @@
 - Only IPv4 is required
 - Terraform Modules for AWS should not be used
 - S3 Backend not to be used for simplicity
+- HTTPS not used to avoid local dependency of AWS CLI/ openssl for certificates
 
 
 # Architecture Description

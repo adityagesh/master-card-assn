@@ -19,7 +19,7 @@
 - Apache webserver is accessible via http
 - Both EBS volume encrypted using aws/ebs encryption key
 - Log rotation handles increasing log size
-- Autoscaling based on CPU and Memory percentage usage using CloudWatch
+- Autoscaling based on CPU and Memory percentage (using cloudwatch-agent) usage through CloudWatch
 
 
 # Instructions to deploy
